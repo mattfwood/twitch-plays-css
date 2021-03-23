@@ -1,3 +1,5 @@
+const sendKeys = require('sendkeys-macos');
+const fs = require('fs');
 let exec = require("child_process").exec,
   config = require("./config.js"),
   lastTime = {},
@@ -40,7 +42,20 @@ let defaultKeyMap = config.keymap || {
   select: "e",
 };
 
+
+
+function appendText(text) {
+  console.log('APPENDING TEXT');
+  const fileStream = fs.createWriteStream('styles.css',
+    { flags: 'a' }
+  );
+  fileStream.write(`${text}\n\n`);
+  fileStream.end();
+}
+
+
 function sendKey(command) {
+  console.log('KEY SENT')
   //if doesn't match the filtered words
   if (!command.match(regexFilter)) {
     let allowKey = true;
@@ -54,25 +69,31 @@ function sendKey(command) {
         lastTime = newTime;
       }
     }
-    if (allowKey) {
+    if (allowKey || true) {
       if (isWindows) {
         //use python on windows
         // "VisualBoyAdvance"
         // "DeSmuME 0.9.10 x64"
         exec("python key.py" + "  " + config.programName + " " + key);
       } else {
+        console.log(`SENDING KEY ${key} TO WINDOW ${windowID}`)
+        appendText(key);
+
+
         //Send to preset window under non-windows systems
-        exec(
-          "xdotool key --window " +
-            windowID +
-            " --delay " +
-            config.delay +
-            " " +
-            key
-        );
+        // sendKeys(config.programName, key, { delay: 0.1, initialDelay: 1 });
+        // exec(
+        //   "xdotool key --window " +
+        //     windowID +
+        //     " --delay " +
+        //     config.delay +
+        //     " " +
+        //     key
+        // );
       }
     }
   }
 }
 
 exports.sendKey = sendKey;
+

@@ -1,8 +1,10 @@
 // change these two variables
-let channel = process.env.TWITCH_CHANNEL || "twitchplayspokemon";
+let channel = process.env.TWITCH_CHANNEL || "cratebind";
+// let programName =
+//   process.env.CONFIG_PROGRAM_NAME || "VisualBoyAdvance";
 let programName =
-  process.env.CONFIG_PROGRAM_NAME || "VisualBoyAdvance";
-  
+  process.env.CONFIG_PROGRAM_NAME || "TextEdit";
+
 // List of commands to check for
 let commands = [
   "left",

@@ -18,7 +18,7 @@ const commandRegex =
 
 client.on("message", function (channel, tags, message, self) {
   let isCorrectChannel = `#${config.channel}` === channel;
-  let messageMatches = message.match(commandRegex);
+  let messageMatches = message.match(commandRegex) || true;
 
   if (self) return;
   if (isCorrectChannel && messageMatches) {
