@@ -1,4 +1,5 @@
 const sendKeys = require('sendkeys-macos');
+css = require('css');
 const fs = require('fs');
 let exec = require("child_process").exec,
   config = require("./config.js"),
@@ -55,7 +56,6 @@ function appendText(text) {
 
 
 function sendKey(command) {
-  console.log('KEY SENT')
   //if doesn't match the filtered words
   if (!command.match(regexFilter)) {
     let allowKey = true;
@@ -76,8 +76,13 @@ function sendKey(command) {
         // "DeSmuME 0.9.10 x64"
         exec("python key.py" + "  " + config.programName + " " + key);
       } else {
-        console.log(`SENDING KEY ${key} TO WINDOW ${windowID}`)
-        appendText(key);
+        try {
+          // validate CSS and hopefully avoid anything weird from happening
+          const styles = css.parse(key);
+          appendText(key);
+        } catch (error) {
+          console.warn(`INVALID INPUT: ${key}`)
+        }
 
 
         //Send to preset window under non-windows systems
