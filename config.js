@@ -1,9 +1,5 @@
 // change these two variables
 let channel = process.env.TWITCH_CHANNEL || "cratebind";
-// let programName =
-//   process.env.CONFIG_PROGRAM_NAME || "VisualBoyAdvance";
-let programName =
-  process.env.CONFIG_PROGRAM_NAME || "TextEdit";
 
 // List of commands to check for
 let commands = [
@@ -27,8 +23,6 @@ module.exports = {
   commands,
   // twitch channel to connect to
   channel,
-  // Title of the window of the program (ex: 'Desmume' or 'VBA')
-  programName,
 
   // If you need to filter the commands sent to the program
   // Ex: democracy/anarchy since they don't affect the program itself

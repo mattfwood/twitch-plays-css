@@ -14,17 +14,17 @@ let exec = require("child_process").exec,
 
 let isWindows = process.platform === "win32";
 
-(function setWindowID() {
-  if (!isWindows & windowID === "unfilled") {
-    exec("xdotool search --onlyvisible --name " + config.programName, function (
-      error,
-      stdout
-    ) {
-      windowID = stdout.trim();
-      // console.log(key, windowID);
-    });
-  }
-})();
+// (function setWindowID() {
+//   if (!isWindows & windowID === "unfilled") {
+//     exec("xdotool search --onlyvisible --name " + config.programName, function (
+//       error,
+//       stdout
+//     ) {
+//       windowID = stdout.trim();
+//       // console.log(key, windowID);
+//     });
+//   }
+// })();
 
 for (let i = 0; i < throttledCommands.length; i++) {
   lastTime[throttledCommands[i]] = new Date().getTime();
@@ -46,7 +46,6 @@ let defaultKeyMap = config.keymap || {
 
 
 function appendText(text) {
-  console.log('APPENDING TEXT');
   const fileStream = fs.createWriteStream('styles.css',
     { flags: 'a' }
   );
@@ -70,32 +69,13 @@ function sendKey(command) {
       }
     }
     if (allowKey || true) {
-      if (isWindows) {
-        //use python on windows
-        // "VisualBoyAdvance"
-        // "DeSmuME 0.9.10 x64"
-        exec("python key.py" + "  " + config.programName + " " + key);
-      } else {
-        try {
+      try {
           // validate CSS and hopefully avoid anything weird from happening
           const styles = css.parse(key);
           appendText(key);
         } catch (error) {
           console.warn(`INVALID INPUT: ${key}`)
         }
-
-
-        //Send to preset window under non-windows systems
-        // sendKeys(config.programName, key, { delay: 0.1, initialDelay: 1 });
-        // exec(
-        //   "xdotool key --window " +
-        //     windowID +
-        //     " --delay " +
-        //     config.delay +
-        //     " " +
-        //     key
-        // );
-      }
     }
   }
 }

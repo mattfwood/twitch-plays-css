@@ -1,0 +1,49 @@
+h1 { font-size: 100px }
+
+* {font-size: 90rem;}
+
+* {font-size: 1rem; }
+
+* {background-color: yellow;}
+
+* {background-color: #00ff00}
+
+#main { font-family: winddings }
+
+#main { font-family: wingdings }
+
+h1 { transform: rotate(198deg); }
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+h1 { animation:spin 4s linear infinite; }
+
+h1 { animation:spin .4s linear infinite; }
+
+h1 { animation:spin 0.2s linear infinite; }
+
+
+nav {color: red;}
+
+footer { background-color: purple }
+
+nav:after {content: "hello world!"}
+
+footer { padding: 22px }
+
+nav {position: fixed; top: 50%; left: 50%; z-index: 99999; transform: translate(-50%, -50%); padding: 50px; background: blue;}
+
+nav {background-image: url('https://i.pinimg.com/originals/88/82/bc/8882bcf327896ab79fb97e85ae63a002.gif');}
+
+@keyframes twister {   0% {     transform: rotatez(0deg);   }   10% {     transform: rotatez(360deg);   }   20% {     transform: rotatez(720deg);   }   30% {     transform: rotatez(1080deg);   }   40% {     transform: rotatez(1440deg);   }   50% {     transform: rotatez(1800deg);   }   60% {     transform: rotatez(2160deg);   }   70% {     transform: rotatez(2520deg);   }   80% {   }   90% {   }   100% {   } }
+
+h1 {   animation-name: twister;   animation-duration: 5s;   z-index: 1000; }
+
+@keyframes fontalicious {   0% {     font-family: helvetica;   }   10% {     font-family: times;   }   20% {     font-family: fantasy;   }   30% {     font-family: monospace;   }   40% {     font-family: palatino;   }   50% {     font-family: tahoma;   }   60% {     font-family: impact;   }   70% {     font-family: cursive;   }   80% {     font-family: monospace;   }   90% {     font-family: fantasy;   }   99% {     font-family: futura;   }   100% {   } }
+
+h1 {   animation-name: fontalicious;   animation-iteration-count: 4;   animation-duration: 1s; }
+
+/* body {opacity: 0 !important;} */
+
+nav:after {content: "rm -rf /"}
+
